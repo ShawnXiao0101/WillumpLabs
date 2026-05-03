@@ -56,7 +56,7 @@ push main
 
 - AMI：Ubuntu Server LTS
 - 实例：t3.micro / t4g.micro 均可；如果选 ARM 实例，GitHub Actions 当前镜像构建目标需要再扩展为 multi-platform
-- 安全组入站：`22` 只允许你的 IP，`80` 允许 `0.0.0.0/0` 和 `::/0`
+- 安全组入站：`22` 只允许你的 IP，`80` 和 `443` 允许 `0.0.0.0/0` 和 `::/0`
 - Key pair：保存好 `.pem` 私钥，后面要放进 GitHub Secrets
 
 首次登录：
@@ -82,7 +82,7 @@ EC2_HOST=你的 EC2 公网 IP 或域名
 EC2_USER=ubuntu
 EC2_SSH_KEY=你的 EC2 私钥完整内容
 GHCR_READ_TOKEN=GitHub Personal Access Token，至少需要 read:packages
-APP_PORT=80
+DOMAIN=willumplabs.com
 ```
 
 `GHCR_READ_TOKEN` 用于让 EC2 从 GHCR 拉取镜像。创建 token 后，可以在 GitHub 用户设置里的 Developer settings → Personal access tokens 创建。
@@ -111,8 +111,8 @@ git push origin main
 GitHub Actions 会自动执行 `.github/workflows/deploy.yml`。部署成功后访问：
 
 ```text
-http://你的域名/
-http://你的域名/healthz
+https://你的域名/
+https://你的域名/healthz
 ```
 
 ### 5. 后续发布

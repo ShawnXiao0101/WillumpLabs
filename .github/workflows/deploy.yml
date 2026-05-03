@@ -83,21 +83,22 @@ jobs:
           IMAGE: ${{ steps.image.outputs.name }}:${{ github.sha }}
           GHCR_USERNAME: ${{ github.actor }}
           GHCR_TOKEN: ${{ secrets.GHCR_READ_TOKEN }}
-          APP_PORT: ${{ secrets.APP_PORT }}
+          DOMAIN: ${{ secrets.DOMAIN }}
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          envs: IMAGE,GHCR_USERNAME,GHCR_TOKEN,APP_PORT
+          envs: IMAGE,GHCR_USERNAME,GHCR_TOKEN,DOMAIN
           script: |
             set -euo pipefail
+            test -n "$DOMAIN"
             sudo mkdir -p /opt/willumplabs
             sudo chown -R "$USER":"$USER" /opt/willumplabs
             cp /tmp/willumplabs-deploy/docker-compose.prod.yml /opt/willumplabs/docker-compose.yml
             cd /opt/willumplabs
             printf '%s\n' "$GHCR_TOKEN" | docker login ghcr.io -u "$GHCR_USERNAME" --password-stdin
-            IMAGE="$IMAGE" APP_PORT="${APP_PORT:-80}" docker compose pull
-            IMAGE="$IMAGE" APP_PORT="${APP_PORT:-80}" docker compose up -d --remove-orphans
+            IMAGE="$IMAGE" DOMAIN="$DOMAIN" docker compose pull
+            IMAGE="$IMAGE" DOMAIN="$DOMAIN" docker compose up -d --remove-orphans
             docker image prune -f
-            sleep 3
-            curl -fsS http://127.0.0.1:${APP_PORT:-80}/healthz
+            sleep 8
+            curl -fsS "https://${DOMAIN}/healthz"
