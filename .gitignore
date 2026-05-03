@@ -1,0 +1,16 @@
+.DS_Store
+
+# Go
+bin/
+coverage.out
+
+# Node / frontend
+node_modules/
+web/node_modules/
+web/dist/
+web/*.tsbuildinfo
+
+# Logs and env
+*.log
+.env
+.env.*

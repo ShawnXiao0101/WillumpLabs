@@ -1,0 +1,508 @@
+:root {
+  color: #18212a;
+  background: #f6f2e8;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-shell {
+  min-height: 100vh;
+  padding: 24px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(238, 244, 232, 0.2)),
+    #f7f1e5;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 1180px;
+  margin: 0 auto 22px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: #68706b;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 0.98;
+}
+
+h2 {
+  margin-bottom: 0;
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.profile,
+.player-seat,
+.room-card,
+.room-creator,
+.game-panel,
+.lobby,
+.login-form {
+  border: 1px solid rgba(27, 35, 42, 0.11);
+  background: rgba(255, 253, 248, 0.78);
+  box-shadow: 0 18px 50px rgba(47, 40, 29, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 42px;
+  padding: 0 14px;
+  border-radius: 999px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+  gap: 22px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.lobby,
+.game-panel {
+  border-radius: 8px;
+}
+
+.lobby {
+  align-self: start;
+  padding: 18px;
+}
+
+.room-creator {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid rgba(24, 33, 42, 0.16);
+  border-radius: 8px;
+  padding: 0 12px;
+  color: #18212a;
+  background: #fffdf8;
+  outline: none;
+}
+
+input:focus {
+  border-color: #1e8a5f;
+  box-shadow: 0 0 0 4px rgba(30, 138, 95, 0.13);
+}
+
+.primary-button,
+.ghost-button,
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  font-weight: 850;
+}
+
+.primary-button {
+  color: #fff;
+  background: #176f51;
+  box-shadow: 0 12px 24px rgba(23, 111, 81, 0.2);
+}
+
+.primary-button:hover {
+  background: #125c43;
+}
+
+.primary-button:disabled {
+  opacity: 0.65;
+}
+
+.primary-button.compact {
+  min-width: 96px;
+}
+
+.ghost-button,
+.icon-button {
+  color: #1f2b34;
+  background: rgba(24, 33, 42, 0.07);
+}
+
+.icon-button {
+  width: 42px;
+  padding: 0;
+}
+
+.section-title,
+.game-header,
+.game-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.section-title {
+  margin: 18px 0 12px;
+}
+
+.room-list {
+  display: grid;
+  gap: 10px;
+}
+
+.room-card {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  border-radius: 8px;
+  padding: 14px;
+  color: inherit;
+  text-align: left;
+}
+
+.room-card:hover,
+.room-card.active {
+  border-color: rgba(23, 111, 81, 0.45);
+  background: #fffdf8;
+}
+
+.room-name {
+  font-weight: 900;
+}
+
+.room-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #68706b;
+  font-size: 0.88rem;
+}
+
+.empty-state,
+.loading {
+  color: #68706b;
+}
+
+.game-panel {
+  min-width: 0;
+  padding: 22px;
+}
+
+.game-panel.idle {
+  display: grid;
+  min-height: 520px;
+  place-items: center;
+  text-align: center;
+}
+
+.game-header {
+  margin-bottom: 16px;
+}
+
+.players {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.player-seat {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: none;
+}
+
+.player-seat.active {
+  border-color: rgba(23, 111, 81, 0.5);
+}
+
+.player-seat.winner {
+  background: #fff7d6;
+}
+
+.player-seat div {
+  display: grid;
+  min-width: 0;
+}
+
+.player-seat strong,
+.player-seat small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.player-seat small {
+  color: #68706b;
+}
+
+.stone,
+.piece {
+  display: block;
+  border-radius: 999px;
+}
+
+.stone {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.black {
+  background: #151b1f;
+}
+
+.white {
+  background: #f9f7ef;
+  border: 1px solid rgba(24, 33, 42, 0.22);
+}
+
+.board {
+  --line: rgba(69, 47, 22, 0.36);
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: repeat(15, 1fr);
+  aspect-ratio: 1;
+  width: min(100%, 680px);
+  margin: 0 auto;
+  padding: 12px;
+  border: 1px solid rgba(84, 56, 26, 0.22);
+  border-radius: 8px;
+  background:
+    linear-gradient(var(--line) 1px, transparent 1px) calc(100% / 30) calc(100% / 30) / calc(100% / 15)
+      calc(100% / 15),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px) calc(100% / 30) calc(100% / 30) / calc(100% / 15)
+      calc(100% / 15),
+    #ddb66b;
+  background-origin: content-box;
+  box-shadow: inset 0 0 0 8px rgba(255, 255, 255, 0.15), 0 24px 60px rgba(65, 42, 17, 0.18);
+}
+
+.cell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  min-height: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+}
+
+.cell:not(:disabled):hover::after {
+  content: "";
+  width: 34%;
+  height: 34%;
+  border-radius: 999px;
+  background: rgba(23, 111, 81, 0.45);
+}
+
+.piece {
+  width: min(74%, 34px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow: 0 7px 14px rgba(19, 21, 23, 0.28);
+}
+
+.piece.black {
+  background:
+    radial-gradient(circle at 32% 26%, #4a545b 0 8%, #1d252a 30%, #090d10 72%),
+    #11171b;
+}
+
+.piece.white {
+  background:
+    radial-gradient(circle at 32% 24%, #ffffff 0 16%, #f7f3e6 42%, #d9d2be 100%),
+    #f8f4e8;
+  box-shadow: 0 7px 14px rgba(19, 21, 23, 0.16);
+}
+
+.cell.latest .piece {
+  outline: 3px solid rgba(28, 138, 95, 0.42);
+  outline-offset: 2px;
+}
+
+.game-footer {
+  margin-top: 16px;
+  color: #68706b;
+  font-weight: 800;
+}
+
+.login-page {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 420px);
+  gap: 28px;
+  align-items: center;
+  width: min(100%, 980px);
+  min-height: calc(100vh - 48px);
+  margin: 0 auto;
+}
+
+.login-hero h1 {
+  margin-bottom: 20px;
+}
+
+.login-hero p:last-child {
+  max-width: 560px;
+  color: #4e5b55;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.login-form {
+  display: grid;
+  gap: 12px;
+  border-radius: 8px;
+  padding: 22px;
+}
+
+.login-form label {
+  font-weight: 850;
+}
+
+.form-error {
+  margin: 0;
+  color: #b4362c;
+  font-weight: 750;
+}
+
+.toast {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 10;
+  max-width: min(360px, calc(100vw - 44px));
+  border-radius: 8px;
+  padding: 13px 16px;
+  color: #fff;
+  font-weight: 850;
+  box-shadow: 0 18px 40px rgba(18, 20, 22, 0.2);
+}
+
+.toast.good {
+  background: #176f51;
+}
+
+.toast.bad {
+  background: #b4362c;
+}
+
+.toast.info {
+  background: #27343e;
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    padding: 16px;
+  }
+
+  .layout,
+  .login-page {
+    grid-template-columns: 1fr;
+  }
+
+  .lobby {
+    order: 2;
+  }
+
+  .game-panel {
+    order: 1;
+  }
+
+  .login-page {
+    align-content: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .topbar,
+  .game-header,
+  .section-title {
+    align-items: flex-start;
+  }
+
+  .topbar,
+  .game-header {
+    flex-direction: column;
+  }
+
+  .players {
+    grid-template-columns: 1fr;
+  }
+
+  .game-panel,
+  .lobby {
+    padding: 14px;
+  }
+
+  .room-creator {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .primary-button.compact {
+    width: 100%;
+  }
+
+  .board {
+    padding: 7px;
+  }
+
+  .game-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+}

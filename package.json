@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "dev": "npm --prefix web run dev -- --host 0.0.0.0",
+    "build": "npm --prefix web run build",
+    "server": "go run ./cmd/server",
+    "start": "npm run build && go run ./cmd/server",
+    "test": "go test ./... && npm --prefix web run build"
+  }
+}
