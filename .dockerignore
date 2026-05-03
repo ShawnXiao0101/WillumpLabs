@@ -1,0 +1,15 @@
+.git
+.github
+.DS_Store
+
+node_modules
+web/node_modules
+web/dist
+web/*.tsbuildinfo
+
+bin
+coverage.out
+
+*.log
+.env
+.env.*

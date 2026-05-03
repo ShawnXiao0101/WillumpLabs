@@ -94,6 +94,7 @@ func NewServer() *Server {
 
 func (server *Server) Handler() http.Handler {
 	mux := http.NewServeMux()
+	mux.HandleFunc("/healthz", handleHealthz)
 	mux.HandleFunc("/api/login", server.handleLogin)
 	mux.HandleFunc("/api/me", server.withUser(server.handleMe))
 	mux.HandleFunc("/api/rooms", server.withUser(server.handleRooms))
@@ -105,6 +106,14 @@ func (server *Server) Handler() http.Handler {
 		mux.Handle("/", spaHandler(dist))
 	}
 	return logRequests(mux)
+}
+
+func handleHealthz(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		writeError(w, http.StatusMethodNotAllowed, "method not allowed")
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]string{"status": "ok"})
 }
 
 func Run() error {
